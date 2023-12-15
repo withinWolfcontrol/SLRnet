@@ -66,7 +66,8 @@ class SLRnet(nn.Module):
         self.up_residual_conv3 = ResidualConv(filters[1] + filters[0], filters[0], 1, 1)
 
         self.output_layer = nn.Sequential(
-            nn.Conv2d(filters[0], out_channel, 1, 1),
+            nn.Conv2d(filters[0], out_channel, 1, 1), # The number of output channels is set to 2 for non-orthogonal multiplexing with phase modulation only or amplitude modulation only, 
+                                                      # and the number of output channels is set to 4 for non-orthogonal multiplexing with complex amplitude modulation.
             nn.Sigmoid(),
         )
 
